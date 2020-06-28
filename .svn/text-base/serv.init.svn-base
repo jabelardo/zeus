@@ -1,0 +1,89 @@
+#!/bin/bash 
+#
+# serv
+#
+# chkconfig: - 96 02
+# description: Inicia al servicio del servidor de aplicaciones zeus
+# processname: serv
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+[ -r /etc/sysconfig/network ] && . /etc/sysconfig/network
+
+RETVAL=0
+prog="serv"
+root="/opt/servidor"
+exe="${root}/bin/${prog}"
+conf="${root}/etc/${prog}.conf"
+
+# Check that networking is up.
+[ "${NETWORKING}" = "no" ] && exit 0
+
+[ -x ${exe} ] || exit 0 
+
+[ -r ${conf} ] || exit 0 
+
+start() {
+        # Start daemons.
+	if [ -n "`/sbin/pidof $prog`" ]; then
+		echo -n $"$prog: already running"
+		return 1
+	fi
+        echo -n $"Starting $prog: "
+	daemon su -c "\"cd ${root}/bin && ./${prog} \"" - servidor
+	RETVAL=$?
+ 	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/${prog} 
+        echo
+	return $RETVAL
+}
+
+stop() {
+        # Stop daemons.
+        echo -n $"Stopping $prog: "
+       	killproc $prog
+	RETVAL=$?
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/${prog}
+	success
+        echo
+	return $RETVAL
+}
+status() {
+        pidof=`/sbin/pidof $prog`
+	if [ ! $pidof -eq 0 ]; then
+		echo -n $"$prog: is running, pid = $pidof"
+        else
+		echo -n $"$prog: is not running"
+        fi 
+        echo
+	return $pidof
+}	
+restart() {
+	stop
+# wait a couple of seconds for the named to finish closing down
+	sleep 2
+	start
+}	
+
+# See how we were called.
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	status)
+		status
+		;;
+	restart)
+		restart
+		;;
+	*)
+        	echo $"Usage: $0 {start|stop|status|restart}"
+		exit 1
+esac
+
+exit $?
+

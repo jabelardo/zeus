@@ -1,0 +1,101 @@
+# servidor.ini - Archivo de Configuracion
+# Todos los derechos reservados. Copyright (c) 2003
+
+# Este archivo contiene los parametros de configuracion
+# especificos para la aplicacion. Todas las lineas que comiencen
+# con el Simbolo Numeral ('#') son ignoradas por la aplicacion.
+# No deben haber espacios en blanco antes ni despues del simbolo
+# de asignacion ('='). Las variables de configuracion que se
+# pueden utilizar son:
+#
+#  - SERV_DB                 : Direccin IP del Servidor de Base de Datos mySQL.
+#
+#  - DB_ZEUS_NAME            : Nombre de la base de datos zeus
+#
+#  - DB_SISAC_NAME           : Nombre de la base de datos sisac
+#
+#  - USER                    : Usuario con acceso a la Base de Datos.
+#
+#  - PASSWORD                : Clave de Acceso del Usuario.
+#
+#  - PUERTO                  : Puerto para que el servidor se comunique
+#                            : con el servidor de Base de Datos
+#
+#  - MAX_TIEMPO_VENTA        : Tiempo Maximo de Reserva Limite de
+#                            : Numeros en Memoria (en Minutos).
+#
+#  - TIEMPO_ELIMINACION      : Tiempo no transcurrido antes de eliminar o
+#                            : o modificar un ticket.
+#
+#  - TIEMPO_CHEQUEO_PREVENTA : Tiempo en el cual el proceso de anulacion
+#                            : de tickets se despierta (segundos).
+#
+#  - MIN_HILOS               : Cantidad minima de hilos que el servidor
+#                            : va a tener corriendo.
+#
+#  - MAX_HILOS               : Cantidad maxima de hilos que el servidor
+#                            : va a tener corriendo.
+#
+#  - DELTA_HILOS             : Incremento de hilos al ya no tener hilos
+#                            : desocupados para atender a los clientes.
+#
+#  - SCK_X_HILO              : Cantidad de clientes que un hilo va a atender.
+#
+#  - SERVIDOR_PUERTO         : Puerto por la cual los clientes van a comunicarse
+#                            : con el servidor.
+#
+#  - SERVIDOR_PUERTO_ADMIN   : Puerto de comunicacion con el sistema 
+#                              administrativo.
+#
+#  - COLA_DE_ESPERA          : Cola de espera para todos aquellos clientes que
+#                            : se quieran comunicar con el servidor.
+#
+#  - MAX_ADMIN_CON           : Numero de maximo de conexiones administrativas.
+#
+#  - TIEMPO_ESPERA           : Tiempo maximo (milisegundo) de espera entre
+#                            : bytes de un paquete.
+#
+#  - DIRECTORIO_REGISTROS    : Directorio en donde se almacenaran los archivos
+#                            : de bitacora de las operaciones del servidor.
+#
+#  - DIRECTORIO_PIDOF        : Directorio en donde se almacenara el archivo que
+#                            : contine el PID del proceso del servidor.
+#
+#  - NIVEL_REGISTRO_MENSAJES : Niveles de informacion para las bitacoras del
+#  - NIVEL_REGISTRO_CLIENTES : servidor; 0 - NADA, 1 - Normal, 2 - Verbose, 
+#  - NIVEL_REGISTRO_ADMIN    : 3 - Debug
+#
+#  - DIASINFORMACION         : Cantidad de dias q el servidor va a dejar en la
+#                              base de datos
+URL_SELCO=http://192.168.0.200/local/test.asp
+DB_NUMERO_CONEXIONES=20
+ODBC_TRANSAX=/usr/lib/libtdsodbc.so
+SERV_DB=192.168.0.11
+USER=zeusDBA
+PASSWORD=123456
+DB_ZEUS_NAME=zeus
+DB_SISAC_NAME=Sisac
+PUERTO=3306
+MAX_TIEMPO_VENTA=2
+TIEMPO_ELIMINACION=60
+TIEMPO_CHEQUEO_PREVENTA=1
+MIN_HILOS=20
+MAX_HILOS=30
+DELTA_HILOS=5
+SERVIDOR_PUERTO=3000
+SERVIDOR_PUERTO_ADMIN=4200
+COLA_DE_ESPERA=128
+MAX_ADMIN_CON=100
+TIEMPO_ESPERA=250000
+DIRECTORIO_REGISTROS=.
+DIRECTORIO_PIDOF=.
+DIRECTORIO_RESPALDOS=.
+NIVEL_REGISTRO_MENSAJES=3
+NIVEL_REGISTRO_CLIENTES=3
+NIVEL_REGISTRO_ADMIN=3
+AUTENTIFICACION=14B4NC43514M3J0R
+TIEMPO_VERIFICAR_CONEXION=5
+TIEMPO_DESCONECTAR=10
+DIASINFORMACION=0
+RUTA_ACTUALIZACION_TAQUILLA=/tmp/infov/infov
+# Final del Archivo
